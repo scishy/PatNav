@@ -1,11 +1,21 @@
 #Graph Class Module
 
+# Steps to use
+# First create an empty class using Graph()
+# Then you can add a list of nodes using add_node_list(nodes) where nodes = ["London", "Paris",....]
+# You can also add a single node using add_node(node) where node = "Bombay"
+# Next add edges using add_edge(node1, node2, edge). Example: x.add_edge("London", "Paris", 5). 
+# This will also create a reverse edge between the given nodes.
+
 class Graph:
 
     def __init__(self):
         """Initialize Class"""
         self.nodes = set() # Empty set, no duplicates
         self.graph = {} # Empty dictionary, no duplicates
+
+    def __repr__(self):
+        return str(self.graph)
 
 
     def add_node_list(self, nodes):
@@ -35,5 +45,6 @@ class Graph:
         # Create a reverse edge
         self.graph[node2][node1] = edge
         return
+
 
 
