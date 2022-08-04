@@ -6,6 +6,9 @@
 # You can also add a single node using add_node(node) where node = "Bombay"
 # Next add edges using add_edge(node1, node2, edge). Example: x.add_edge("London", "Paris", 5). 
 # This will also create a reverse edge between the given nodes.
+# You can get number of nodes using node_count method.
+# You can get distance between 2 nodes using get_edge(node1, node2).
+
 
 class Graph:
 
@@ -51,9 +54,29 @@ class Graph:
         count = len(self.nodes)
         return count
 
+    def get_nodes(self):
+        """Returns list of nodes in the class"""
+        return self.nodes
+
+    def get_edge(self, node1, node2):
+        """Returns the distance between two nodes if it exists"""
+        # Making sure that the nodes exist
+        if node1 not in self.nodes:
+            print(node1 + " does not exist, please use add_node method.")
+            return
+        if node2 not in self.nodes:
+            print(node2 + " does not exist, please use add_node method.")
+            return
+        if node2 not in self.graph[node1]:
+            print("Edge does not exist, please use add_edge method.")
+            return
+        else:
+            dist = self.graph[node1][node2]
+            return dist
+
     def remove_node(self, node):
         pass
-    #def get distance
+
 
 
 
