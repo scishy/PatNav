@@ -46,5 +46,14 @@ class Graph:
         self.graph[node2][node1] = edge
         return
 
+    def node_count(self):
+        """Returns the number of nodes in the graph class"""
+        count = len(self.nodes)
+        return count
+
+    def remove_node(self, node):
+        pass
+    #def get distance
+
 
 
