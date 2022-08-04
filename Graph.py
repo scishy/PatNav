@@ -51,7 +51,8 @@ class Graph:
         count = len(self.nodes)
         return count
 
-    #def remove node
+    def remove_node(self, node):
+        pass
     #def get distance
 
 
