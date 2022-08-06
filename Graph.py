@@ -8,6 +8,7 @@
 # This will also create a reverse edge between the given nodes.
 # You can get number of nodes using node_count method.
 # You can get distance between 2 nodes using get_edge(node1, node2).
+# You can remove a node from the graph using remove_node(node) method. This will also remove its edges.
 
 
 class Graph:
@@ -75,7 +76,18 @@ class Graph:
             return dist
 
     def remove_node(self, node):
-        pass
+        """Removes the node from the graph class"""
+        if node not in self.nodes:
+            print("Node does not exist.")
+            return
+        else:
+            self.nodes.remove(node)
+            self.graph.pop(node)
+            for x in self.nodes:
+                if node in self.graph[x]:
+                    self.graph[x].pop(node)
+            print("Removed " + node)
+            return
 
 
 
