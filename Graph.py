@@ -90,5 +90,19 @@ class Graph:
             return
 
 
-
+if __name__ == "__main__":
+    x = Graph()
+    nodes = ["Houston", "Boston", "Austin", "Las Vegas", "Los Angeles", "Chicago", "New York", "Nashville"]
+    x.add_node_list(nodes)
+    x.add_edge("Las Vegas", "Austin", 5)
+    x.add_edge("Los Angeles", "Boston", 5)
+    x.add_edge("Houston", "Chicago", 7)
+    x.add_edge("New York", "Chicago", 15)
+    x.add_edge("Nashville", "Austin", 12)
+    x.add_edge("Boston", "New York", 3)
+    x.add_edge("Houston", "Austin", 4)
+    print(x)
+    x.node_count()
+    x.get_nodes()
+    x.get_edge("Houston", "Austin")
 
