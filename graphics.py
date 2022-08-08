@@ -1,5 +1,11 @@
 """A function to create a graphical representation of the graph class"""
 
+#Graph visualization module
+#requires networkx and matplotlib.pyplot to create visual representation of graph structure
+
+#CITATION: https://networkx.org/documentation/stable/auto_examples/drawing/plot_weighted_graph.html
+
+#Directions: first create object using graph module. Then use visualize(object.getgraph()) to plot the chart
 
 import matplotlib.pyplot as plt
 import networkx as nx
@@ -36,3 +42,5 @@ def visualize(graph):
     plt.axis("off")
     plt.tight_layout()
     plt.show()
+
+    return
