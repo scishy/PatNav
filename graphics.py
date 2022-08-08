@@ -44,3 +44,16 @@ def visualize(graph):
     plt.show()
 
     return
+
+if __name__ == "__main__":
+    graph = {
+        'Houston': {'Boston': 5},
+        'Nashville': {'Los Angeles': 5, 'Chicago': 8},
+        'Toronto': {'Boston': 3},
+        'Austin': {'Chicago': 15},
+        'Los Angeles': {'Boston': 4, 'Nashville': 5},
+        'Boston': {'Houston': 5, 'Toronto': 3, 'Los Angeles': 4},
+        'Chicago': {'Nashville': 8, 'Austin': 15},
+        'New York': {}}
+    
+    visualize(graph)
