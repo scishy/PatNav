@@ -89,6 +89,7 @@ class Graph:
             print("Removed " + node)
             return
 
+#Fix so that the output for x is iterable#
 
 if __name__ == "__main__":
     x = Graph()
