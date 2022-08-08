@@ -11,8 +11,6 @@ def dijkstra(graph, start):
         start (String): The starting node
     """
     distances = {node: sys.maxsize for node in graph} # Set initial shortest distance to all nodes infinity.
-    visited = set() # Initialize empty visited set.
-    unvisited = {node for node in graph} # Initializing unvisited set.
     distances[start] = 0 # Setting starting node distance 0 from itself.
     queue = []
     heapq.heappush(queue, (distances[start], start))
@@ -26,7 +24,6 @@ def dijkstra(graph, start):
             4. Change if the weight is smaller than the distance stored in the array
             """
             current_distance, node = heapq.heappop(queue)
-            visited.add(node)
             if distances[node] < current_distance: 
                 continue 
 
