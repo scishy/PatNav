@@ -39,13 +39,16 @@ def dijkstra(graph, start):
 
 if __name__ == "__main__":
     graph = {
-        'Reykjavik': {'Berlin': 5},
-        'Oslo': {'Rome': 5, 'Belgrade': 8},
-        'Moscow': {'Berlin': 3},
-        'London': {'Belgrade': 15},
-        'Rome': {'Berlin': 4, 'Oslo': 5},
-        'Berlin': {'Reykjavik': 5, 'Moscow': 3, 'Rome': 4},
-        'Belgrade': {'Oslo': 8, 'London': 15},
-        'Athens': {}}
+        'Houston': {'Boston': 5},
+        'Nashville': {'Los Angeles': 5, 'Chicago': 8},
+        'Toronto': {'Boston': 3},
+        'Austin': {'Chicago': 15},
+        'Los Angeles': {'Boston': 4, 'Nashville': 5},
+        'Boston': {'Houston': 5, 'Toronto': 3, 'Los Angeles': 4},
+        'Chicago': {'Nashville': 8, 'Austin': 15},
+        'New York': {}}
 
-    dijkstra(graph, "London")
+    dijkstra(graph, "Austin")
+
+    # Add end node functionality
+    # Add skip node functionality
