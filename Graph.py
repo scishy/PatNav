@@ -18,9 +18,11 @@ class Graph:
         self.nodes = set() # Empty set, no duplicates
         self.graph = {} # Empty dictionary, no duplicates
 
-    def __repr__(self):
-        return str(self.graph)
+    #def __repr__(self):
+        #return self.graph
 
+    def get_graph(self):
+        return self.graph
 
     def add_node_list(self, nodes):
         """Add a list of nodes to the graph"""
@@ -88,8 +90,6 @@ class Graph:
                     self.graph[x].pop(node)
             print("Removed " + node)
             return
-
-#Fix so that the output for x is iterable#
 
 if __name__ == "__main__":
     x = Graph()

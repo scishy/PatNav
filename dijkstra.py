@@ -3,11 +3,11 @@
 import heapq
 import sys
 
-def dijkstra(graph, start):
-    """Returns the shortest distances from the start node to all other nodes in a graph
+def dijkstra(graph, start): # Use get_graph() method to input into this function.
+    """Returns the shortest distances from the start node to all other nodes in a graph. 
 
     Args:
-        graph (Dictionary): Output from graph class.
+        graph (Dictionary): Output from graph class. (Use the get_graph() method).
         start (String): The starting node
     """
     distances = {node: sys.maxsize for node in graph} # Set initial shortest distance to all nodes infinity.
