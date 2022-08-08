@@ -20,6 +20,7 @@ class ShortestPath():
         graph: graph should be presented as dictionary type.
         distances: edge of each nodes 
         """
+        self.inf = 100000
         self.graph = graph
         self.distances = {node: sys.maxsize for node in graph}
     
