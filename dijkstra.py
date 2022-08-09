@@ -82,7 +82,3 @@ if __name__ == "__main__":
         'New York': {}}
 
     dijkstra(graph, "Austin", "Boston", "Los Angeles")
-
-
-
-    # Add skip node functionality

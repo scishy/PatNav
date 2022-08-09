@@ -99,11 +99,13 @@ class Graph:
 
         G = nx.Graph()
         for node1 in self.graph:
+            if self.graph[node1] == {}:
+                G.add_node(node1)
             for node2 in self.graph[node1]:
                 G.add_edge(node1, node2, weight = self.graph[node1][node2])
 
         # Position
-        pos = nx.spring_layout(G, seed=5)
+        pos = nx.spring_layout(G)
 
         #Edges
         edge_list = [(u, v) for (u, v, d) in G.edges(data=True)]
@@ -130,8 +132,6 @@ class Graph:
 
         return
 
-#add empty node functionality to visualize method
-
 if __name__ == "__main__":
     x = Graph()
     nodes = ["Houston", "Boston", "Austin", "Las Vegas", "Los Angeles", "Chicago", "New York", "Nashville"]
@@ -145,6 +145,7 @@ if __name__ == "__main__":
     x.add_edge("Houston", "Austin", 4)
     x.add_edge("Nashville", "Houston", 7)
     x.add_edge("Boston", "Austin", 4)
+    x.add_node("Baltimore")
     print(x)
     x.visualize()
 
