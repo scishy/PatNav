@@ -62,9 +62,10 @@ def dijkstra(graph, start, end = None, skip = None): # Use get_graph() method to
             distances[node] = "Unreachable"
 
     
-    
     if end == None:
         return print(distances)
+    elif distances[end] == "Unreachable":
+        return print("Unreachable")
     else:
         sequence = backtrack(previous, start, end)
         print(" <- ".join([str(x) for x in sequence]))
@@ -81,4 +82,4 @@ if __name__ == "__main__":
         'Chicago': {'Nashville': 8, 'Austin': 15},
         'New York': {}}
 
-    dijkstra(graph, "Austin", "Boston", "Los Angeles")
+    dijkstra(graph, "Austin", "New York")

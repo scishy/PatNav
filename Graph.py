@@ -148,5 +148,5 @@ if __name__ == "__main__":
     x.add_node("Baltimore")
     x.visualize()
     import dijkstra
-    dijkstra.dijkstra(x.get_graph(), "Nashville", "Los Angeles", "Houston")
+    dijkstra.dijkstra(x.get_graph(), "Las Vegas", "Los Angeles", "Austin")
 
