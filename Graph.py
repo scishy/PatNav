@@ -94,7 +94,7 @@ class Graph:
             print("Removed " + node)
             return
 
-    def visualize(self):
+    def visualize(self, seed = 5):
         """Generates a visualization of the graph class"""
 
         G = nx.Graph()
@@ -105,7 +105,7 @@ class Graph:
                 G.add_edge(node1, node2, weight = self.graph[node1][node2])
 
         # Position
-        pos = nx.spring_layout(G)
+        pos = nx.spring_layout(G, seed = seed)
 
         #Edges
         edge_list = [(u, v) for (u, v, d) in G.edges(data=True)]
@@ -146,6 +146,7 @@ if __name__ == "__main__":
     x.add_edge("Nashville", "Houston", 7)
     x.add_edge("Boston", "Austin", 4)
     x.add_node("Baltimore")
-    print(x)
     x.visualize()
+    import dijkstra
+    dijkstra.dijkstra(x.get_graph(), "Nashville", "Los Angeles", "Houston")
 
