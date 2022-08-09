@@ -13,14 +13,26 @@ def backtrack(sequence, start, end):
     track.insert(0, final)
     return track
 
+def remove_node(network, node):
+    """Helper function to remove node"""
+    graph = network.copy()
+    graph.pop(node)
+    for x in graph:
+        if node in graph[x]:
+            graph[x].pop(node)
+    return graph
 
-def dijkstra(graph, start, end = None): # Use get_graph() method to input into this function.
+
+def dijkstra(graph, start, end = None, skip = None): # Use get_graph() method to input into this function.
     """Returns the shortest distances from the start node to all other nodes in a graph. 
 
     Args:
         graph (Dictionary): Output from graph class. (Use the get_graph() method).
         start (String): The starting node
     """
+    if skip is not None:
+        graph = remove_node(graph, skip)
+
     distances = {node: sys.maxsize for node in graph} # Set initial shortest distance to all nodes infinity.
     distances[start] = 0 # Setting starting node distance 0 from itself.
     queue = []
@@ -61,15 +73,15 @@ def dijkstra(graph, start, end = None): # Use get_graph() method to input into t
 if __name__ == "__main__":
     graph = {
         'Houston': {'Boston': 5},
-        'Nashville': {'Los Angeles': 5, 'Chicago': 8},
+        'Nashville': {'Los Angeles': 5, 'Chicago': 8, 'Boston': 10},
         'Toronto': {'Boston': 3},
         'Austin': {'Chicago': 15},
         'Los Angeles': {'Boston': 4, 'Nashville': 5},
-        'Boston': {'Houston': 5, 'Toronto': 3, 'Los Angeles': 4},
+        'Boston': {'Houston': 5, 'Toronto': 3, 'Los Angeles': 4, 'Nashville': 10},
         'Chicago': {'Nashville': 8, 'Austin': 15},
         'New York': {}}
 
-    dijkstra(graph, "Austin")
+    dijkstra(graph, "Austin", "Boston", "Los Angeles")
 
 
 
