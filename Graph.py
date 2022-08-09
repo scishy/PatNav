@@ -130,6 +130,8 @@ class Graph:
 
         return
 
+#add empty node functionality to visualize method
+
 if __name__ == "__main__":
     x = Graph()
     nodes = ["Houston", "Boston", "Austin", "Las Vegas", "Los Angeles", "Chicago", "New York", "Nashville"]

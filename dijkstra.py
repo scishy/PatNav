@@ -3,6 +3,17 @@
 import heapq
 import sys
 
+def backtrack(sequence, start, end):
+    """Helper function to find the route taken"""
+    final = end
+    track = []
+    while start not in track:
+        track.append(sequence[end])
+        end = sequence[end]
+    track.insert(0, final)
+    return track
+
+
 def dijkstra(graph, start, end = None): # Use get_graph() method to input into this function.
     """Returns the shortest distances from the start node to all other nodes in a graph. 
 
@@ -13,6 +24,7 @@ def dijkstra(graph, start, end = None): # Use get_graph() method to input into t
     distances = {node: sys.maxsize for node in graph} # Set initial shortest distance to all nodes infinity.
     distances[start] = 0 # Setting starting node distance 0 from itself.
     queue = []
+    previous = {}
     heapq.heappush(queue, (distances[start], start))
 
     while queue:
@@ -31,14 +43,19 @@ def dijkstra(graph, start, end = None): # Use get_graph() method to input into t
                 weighted_distance = current_distance + distance
                 if weighted_distance < distances[adjacency_node]:
                     distances[adjacency_node] = weighted_distance
+                    previous[adjacency_node] = node
                     heapq.heappush(queue, (weighted_distance, adjacency_node))
     for node in distances:
         if distances[node] > 10000:
             distances[node] = "Unreachable"
 
+    
+    
     if end == None:
         return print(distances)
     else:
+        sequence = backtrack(previous, start, end)
+        print(" <- ".join([str(x) for x in sequence]))
         return print(distances[end])
 
 if __name__ == "__main__":
@@ -52,7 +69,8 @@ if __name__ == "__main__":
         'Chicago': {'Nashville': 8, 'Austin': 15},
         'New York': {}}
 
-    dijkstra(graph, "Austin", "New York")
+    dijkstra(graph, "Austin")
+
+
 
     # Add skip node functionality
-    # Add path history
