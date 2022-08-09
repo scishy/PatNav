@@ -9,7 +9,10 @@
 # You can get number of nodes using node_count method.
 # You can get distance between 2 nodes using get_edge(node1, node2).
 # You can remove a node from the graph using remove_node(node) method. This will also remove its edges.
+# You can create a visualization of the graph at any point using the visualize() method. Eg: x.visualize()
 
+import matplotlib.pyplot as plt
+import networkx as nx
 
 class Graph:
 
@@ -18,8 +21,8 @@ class Graph:
         self.nodes = set() # Empty set, no duplicates
         self.graph = {} # Empty dictionary, no duplicates
 
-    #def __repr__(self):
-        #return self.graph
+    def __repr__(self):
+        return str(self.graph)
 
     def get_graph(self):
         return self.graph
@@ -91,6 +94,42 @@ class Graph:
             print("Removed " + node)
             return
 
+    def visualize(self):
+        """Generates a visualization of the graph class"""
+
+        G = nx.Graph()
+        for node1 in self.graph:
+            for node2 in self.graph[node1]:
+                G.add_edge(node1, node2, weight = self.graph[node1][node2])
+
+        # Position
+        pos = nx.spring_layout(G, seed=5)
+
+        #Edges
+        edge_list = [(u, v) for (u, v, d) in G.edges(data=True)]
+
+        #Draw Nodes
+        nx.draw_networkx_nodes(G, pos, node_size=500)
+
+        #Draw edges
+        nx.draw_networkx_edges(G, pos, edgelist=edge_list, width=5, edge_color = (234/255.0,182/255.0,118/255.0))
+
+        #Draw node labels
+        nx.draw_networkx_labels(G, pos, font_size=10, font_family="sans-serif")
+
+        #Edge Labels
+        edge_labels = nx.get_edge_attributes(G, "weight")
+        nx.draw_networkx_edge_labels(G, pos, edge_labels)
+
+        #Display
+        ax = plt.gca()
+        ax.margins(0.08)
+        plt.axis("off")
+        plt.tight_layout()
+        plt.show()
+
+        return
+
 if __name__ == "__main__":
     x = Graph()
     nodes = ["Houston", "Boston", "Austin", "Las Vegas", "Los Angeles", "Chicago", "New York", "Nashville"]
@@ -102,8 +141,8 @@ if __name__ == "__main__":
     x.add_edge("Nashville", "Austin", 12)
     x.add_edge("Boston", "New York", 3)
     x.add_edge("Houston", "Austin", 4)
+    x.add_edge("Nashville", "Houston", 7)
+    x.add_edge("Boston", "Austin", 4)
     print(x)
-    x.node_count()
-    x.get_nodes()
-    x.get_edge("Houston", "Austin")
+    x.visualize()
 
