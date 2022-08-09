@@ -3,7 +3,7 @@
 import heapq
 import sys
 
-def dijkstra(graph, start): # Use get_graph() method to input into this function.
+def dijkstra(graph, start, end = None): # Use get_graph() method to input into this function.
     """Returns the shortest distances from the start node to all other nodes in a graph. 
 
     Args:
@@ -35,7 +35,11 @@ def dijkstra(graph, start): # Use get_graph() method to input into this function
     for node in distances:
         if distances[node] > 10000:
             distances[node] = "Unreachable"
-    return print(distances)
+
+    if end == None:
+        return print(distances)
+    else:
+        return print(distances[end])
 
 if __name__ == "__main__":
     graph = {
@@ -48,8 +52,7 @@ if __name__ == "__main__":
         'Chicago': {'Nashville': 8, 'Austin': 15},
         'New York': {}}
 
-    dijkstra(graph, "Austin")
+    dijkstra(graph, "Austin", "New York")
 
-    # Add end node functionality
     # Add skip node functionality
     # Add path history
