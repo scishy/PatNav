@@ -3,6 +3,7 @@
 # Requirements for the function
 import heapq
 import sys
+import copy
 
 def backtrack(sequence, start, end):
     """Helper function to track the path taken to the end node.
@@ -33,7 +34,7 @@ def remove_node(network, node):
     Returns:
         dictionary: Temporary weighted graph to be used in the algorim.
     """
-    graph = network.copy()
+    graph = copy.deepcopy(network)
     graph.pop(node)
     for x in graph:
         if node in graph[x]:
@@ -98,14 +99,22 @@ def dijkstra(graph, start, end = None, skip = None): # Use get_graph() method to
         return distances[end]
 
 if __name__ == "__main__":
-    graph = {
-        'Houston': {'Boston': 5},
-        'Nashville': {'Los Angeles': 5, 'Chicago': 8, 'Boston': 10},
-        'Toronto': {'Boston': 3},
-        'Austin': {'Chicago': 15},
-        'Los Angeles': {'Boston': 4, 'Nashville': 5},
-        'Boston': {'Houston': 5, 'Toronto': 3, 'Los Angeles': 4, 'Nashville': 10},
-        'Chicago': {'Nashville': 8, 'Austin': 15},
-        'New York': {}}
+    from Graph import Graph
+    x = Graph()
+    nodes = ["Houston", "Boston", "Austin", "Las Vegas", "Los Angeles", "Chicago", "New York", "Nashville"]
+    x.add_node_list(nodes)
+    x.add_edge("Las Vegas", "Austin", 5)
+    x.add_edge("Los Angeles", "Boston", 5)
+    x.add_edge("Houston", "Chicago", 7)
+    x.add_edge("New York", "Chicago", 15)
+    x.add_edge("Nashville", "Austin", 12)
+    x.add_edge("Boston", "New York", 3)
+    x.add_edge("Houston", "Austin", 4)
+    x.add_edge("Nashville", "Houston", 7)
+    x.add_edge("Boston", "Austin", 4)
+    #x.visualize()
 
-    print(dijkstra(graph, "Austin", "Boston"))
+    print(dijkstra(x.graph, "Las Vegas", "New York"))
+    print(dijkstra(x.graph, "Las Vegas", "New York", "Boston"))
+    print(dijkstra(x.graph, "Las Vegas", "New York"))
+
