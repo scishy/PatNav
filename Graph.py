@@ -11,37 +11,65 @@
 # You can remove a node from the graph using remove_node(node) method. This will also remove its edges.
 # You can create a visualization of the graph at any point using the visualize() method. Eg: x.visualize()
 
+# Needed for the visualize method
 import matplotlib.pyplot as plt
 import networkx as nx
 
 class Graph:
+    """This class provides an implementation of a weighted network. 
+    It stores nodes and its edges and provides a method to visualize it.
+    """
 
     def __init__(self):
-        """Initialize Class"""
+        """Initializes the class"""
         self.nodes = set() # Empty set, no duplicates
         self.graph = {} # Empty dictionary, no duplicates
 
     def __repr__(self):
-        return str(self.graph)
+        """String representation.
+
+        Returns:
+            String: Printed Graph.
+        """
+        return str(self.graph) # self.graph converted into a string
 
     def get_graph(self):
-        return self.graph
+        """Returns the graph usable with an external function.
+
+        Returns:
+            Dictionary: Containing nodes and edges.
+        """
+        return self.graph # returns the graph as a parameter
 
     def add_node_list(self, nodes):
-        """Add a list of nodes to the graph"""
+        """Adds a list of nodes to the graph.
+
+        Args:
+            nodes (list): Containing node labels as strings.
+        """
         for node in nodes: 
             self.graph[node] = {} # Creates a key for each node and an empty dictionary as its value
             self.nodes.add(node) # Add each node to the node set
         return
 
     def add_node(self, node):
-        """Add a single node to the graph"""
+        """Adds a single node to the graph.
+
+        Args:
+            node (string): Node to be added to the graph class.
+        """
         self.graph[node] = {} # New key in the graph dictionary with empty dictionary as its value
         self.nodes.add(node) # Add new node to the node set
         return
 
     def add_edge(self, node1, node2, edge):
-        """Create a weighted edge in the graph between node1 and node2"""
+        """Adds an edge between node1 and node2 in the graph class.
+
+        Args:
+            node1 (string): From node.
+            node2 (string): To node.
+            edge (int): Distance or weight between the nodes.
+        """
         # Making sure both nodes are in the graph
         if node1 not in self.nodes:
             print(node1 + " does not exist, please use add_node method.")
@@ -56,16 +84,32 @@ class Graph:
         return
 
     def node_count(self):
-        """Returns the number of nodes in the graph class"""
+        """Returns the number of nodes in the graph class.
+
+        Returns:
+            int: Number of nodes in the graph class.
+        """
         count = len(self.nodes)
-        return count
+        return count #integer
 
     def get_nodes(self):
-        """Returns list of nodes in the class"""
-        return self.nodes
+        """Returns a list of nodes in the graph class.
+
+        Returns:
+            list: Containing the node labels.
+        """
+        return self.nodes #list
 
     def get_edge(self, node1, node2):
-        """Returns the distance between two nodes if it exists"""
+        """Returns the edge between two given nodes.
+
+        Args:
+            node1 (string): First node.
+            node2 (string): Second node.
+
+        Returns:
+            int: The distance or weight between two nodes.
+        """
         # Making sure that the nodes exist
         if node1 not in self.nodes:
             print(node1 + " does not exist, please use add_node method.")
@@ -78,16 +122,24 @@ class Graph:
             return
         else:
             dist = self.graph[node1][node2]
-            return dist
+            return dist #integer
 
     def remove_node(self, node):
-        """Removes the node from the graph class"""
+        """Removes a node from the graph class and deletes corresponding edges.
+
+        Args:
+            node (string): Node to be removed.
+        """
+        # Making sure that the node exists
         if node not in self.nodes:
             print("Node does not exist.")
             return
         else:
+            #First removing from the node list
             self.nodes.remove(node)
+            #Removing the node and its connections
             self.graph.pop(node)
+            #Removing any other connections to this node in the graph
             for x in self.nodes:
                 if node in self.graph[x]:
                     self.graph[x].pop(node)
@@ -95,9 +147,18 @@ class Graph:
             return
 
     def visualize(self, seed = 5):
-        """Generates a visualization of the graph class"""
+        """Creates a visual representation of the graph class.
 
+        Args:
+            seed (int, optional): Used to change the orientation of the nodes in the graph. Defaults to 5.
+        """
+        # Citation: the creation of this method uses this documentation as reference.
+        # https://networkx.org/documentation/stable/auto_examples/drawing/plot_weighted_graph.html
+
+        # Creating an empty networkx class
         G = nx.Graph()
+
+        # Unpacking the graph to add to the networkx clas
         for node1 in self.graph:
             if self.graph[node1] == {}:
                 G.add_node(node1)
