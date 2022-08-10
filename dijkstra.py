@@ -1,10 +1,20 @@
 """Dijkstra Algorithm as a function"""
 
+# Requirements for the function
 import heapq
 import sys
 
 def backtrack(sequence, start, end):
-    """Helper function to find the route taken"""
+    """Helper function to track the path taken to the end node.
+
+    Args:
+        sequence (dictionary): Containing 2-dictionary containing current and previously visited node.
+        start (string): Starting node.
+        end (string): Final node.
+
+    Returns:
+        list: Containing ordered list of nodes visited.
+    """
     final = end
     track = []
     while start not in track:
@@ -14,7 +24,15 @@ def backtrack(sequence, start, end):
     return track
 
 def remove_node(network, node):
-    """Helper function to remove node"""
+    """Helper function to temporarily remove a node from the algorithm.
+
+    Args:
+        network (dictionary): Weighted graph represented in a dictionary format.
+        node (string): The node to be removed.
+
+    Returns:
+        dictionary: Temporary weighted graph to be used in the algorim.
+    """
     graph = network.copy()
     graph.pop(node)
     for x in graph:
@@ -24,12 +42,20 @@ def remove_node(network, node):
 
 
 def dijkstra(graph, start, end = None, skip = None): # Use get_graph() method to input into this function.
-    """Returns the shortest distances from the start node to all other nodes in a graph. 
+    """An algorithm that finds the shortest path between two nodes of a weighted graph. 
+    In order to make sure the structure of the graph is correct, please use the Graph module to create a class.
+    Use get_graph() method to use as a paramater for this function.
 
     Args:
-        graph (Dictionary): Output from graph class. (Use the get_graph() method).
-        start (String): The starting node
-    """
+        graph (dictionary): Derived from the Graph class containing nodes and edges.
+        start (string): The starting node.
+        end (string, optional): End node. Defaults to None.
+        skip (string, optional): Node to be avoided. Defaults to None.
+
+    Returns:
+        If end node is specified: (dictionary): Containing nodes and the shortest distance to each node.
+        If end node is not specified: (integer): The shortest distance to the end node from the start node. Also prints path taken.
+    """    """"""
     if skip is not None:
         graph = remove_node(graph, skip)
 
