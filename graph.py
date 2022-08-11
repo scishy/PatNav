@@ -1,16 +1,5 @@
 #Graph Class Module
 
-# Steps to use
-# First create an empty class using Graph()
-# Then you can add a list of nodes using add_node_list(nodes) where nodes = ["London", "Paris",....]
-# You can also add a single node using add_node(node) where node = "Bombay"
-# Next add edges using add_edge(node1, node2, edge). Example: x.add_edge("London", "Paris", 5). 
-# This will also create a reverse edge between the given nodes.
-# You can get number of nodes using node_count method.
-# You can get distance between 2 nodes using get_edge(node1, node2).
-# You can remove a node from the graph using remove_node(node) method. This will also remove its edges.
-# You can create a visualization of the graph at any point using the visualize() method. Eg: x.visualize()
-
 # Needed for the visualize method
 import matplotlib.pyplot as plt
 import networkx as nx
