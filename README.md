@@ -53,12 +53,13 @@ graph class.
     - skip: The node to be ignored. Function will return a path without this node.
     
 ## Usage/Examples
+As a Jupyter Notebook: https://drive.google.com/file/d/13temd0E0EgE9kScaBXNQUmiKgK7BYfRe/view?usp=sharing
 
 ```Python
-import dijkstra as dj
-from graph import Graph
+from PatNav import dijkstra as dj
+from PatNav import graph as g
 
-x = Graph()
+x = g.Graph()
 nodes = ["Houston", "Boston", "Austin", "Las Vegas", "Los Angeles", "Chicago", "New York", "Nashville"]
 x.add_node_list(nodes)
 x.add_edge("Las Vegas", "Austin", 5)
