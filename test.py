@@ -1,5 +1,5 @@
 import unittest
-from Graph import Graph
+from graph import Graph
 import dijkstra
 
 # Testing the graph class first
